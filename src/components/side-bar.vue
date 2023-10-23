@@ -10,18 +10,18 @@ import MetisMenu from "metismenujs";
 export default {
   data() {
     return {
-      menuItems
+      menuItems,
     };
   },
   props: {
     type: {
       type: String,
-      required: true
+      required: true,
     },
     width: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   mounted: function () {
@@ -74,7 +74,7 @@ export default {
               break;
           }
         }
-      }
+      },
     },
     width: {
       immediate: true,
@@ -93,13 +93,13 @@ export default {
               break;
           }
         }
-      }
+      },
     },
     $route: {
       handler: "onRoutechange",
       immediate: true,
-      deep: true
-    }
+      deep: true,
+    },
   },
   methods: {
     /**
@@ -197,8 +197,8 @@ export default {
               currentPosition + 300;
         }
       }, 300);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -250,7 +250,7 @@ export default {
                 class="is-parent"
                 :class="{
                   'has-arrow': !item.badge,
-                  'has-dropdown': item.badge
+                  'has-dropdown': item.badge,
                 }"
               >
                 <i :class="`${item.icon}`" v-if="item.icon"></i>

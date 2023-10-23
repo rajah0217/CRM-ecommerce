@@ -80,7 +80,8 @@
         "cart": "Cart",
         "checkout": "Checkout",
         "shops": "Shops",
-        "addproduct": "Add Product"
+        "addproduct": "Add Product",
+        "addorder": "Add Product"
       }
     },
     "email": {
