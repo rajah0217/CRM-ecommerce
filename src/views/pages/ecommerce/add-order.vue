@@ -1,5 +1,5 @@
 <script>
-import Multiselect from "@vueform/multiselect";
+// import Multiselect from "@vueform/multiselect";
 import Layout from "../../layouts/main";
 import PageHeader from "@/components/page-header";
 import DropZone from "@/components/custom/Dropzone.vue";
@@ -10,7 +10,7 @@ import DropZone from "@/components/custom/Dropzone.vue";
 export default {
   components: {
     DropZone,
-    Multiselect,
+    // Multiselect,
     Layout,
     PageHeader,
   },
@@ -104,9 +104,9 @@ export default {
                     </div>
                   </div>
                   <div class="media-body flex-grow-1 overflow-hidden">
-                    <h5 class="font-size-16 mb-1">Billing Info</h5>
+                    <h5 class="font-size-16 mb-1">Client Info</h5>
                     <p class="text-muted text-truncate mb-0">
-                      Fill all information below
+                      Select or add Client.
                     </p>
                   </div>
                   <i
@@ -123,30 +123,20 @@ export default {
               accordion="my-accordion"
             >
               <div class="p-4 border-top">
+                <BButton type="button" class="btn btn-success mb-3">
+                  <i class="mdi mdi-plus me-1"></i> Add New Client
+                </BButton>
                 <form>
                   <div class="mb-3">
-                    <label for="productname">Product Name</label>
-                    <input
-                      id="productname"
-                      name="productname"
-                      type="text"
-                      class="form-control"
-                      placeholder="Enter your Product Name"
-                    />
+                    <label class="control-label">Client Name</label>
+                    <select class="form-control select2">
+                      <option>Select your Client Name</option>
+                      <option value="EL">Martin</option>
+                      <option value="FA">James</option>
+                      <option value="FI">Tilo</option>
+                    </select>
                   </div>
-                  <BRow>
-                    <BCol lg="4">
-                      <div class="mb-3">
-                        <label for="manufacturername">Manufacturer Name</label>
-                        <input
-                          id="manufacturername"
-                          name="manufacturername"
-                          type="text"
-                          class="form-control"
-                          placeholder="Enter your Manufacturer Name"
-                        />
-                      </div>
-                    </BCol>
+                  <!-- <BRow>
                     <BCol lg="4">
                       <div class="mb-3">
                         <label for="manufacturerbrand"
@@ -198,10 +188,10 @@ export default {
                         ></Multiselect>
                       </div>
                     </BCol>
-                  </BRow>
+                  </BRow> -->
 
                   <div class="mb-3 mb-0">
-                    <label for="productdesc">Product Description</label>
+                    <label for="productdesc">Client Description</label>
                     <textarea
                       class="form-control"
                       id="productdesc"
@@ -235,7 +225,7 @@ export default {
                     </div>
                   </div>
                   <div class="media-body flex-grow-1 overflow-hidden">
-                    <h5 class="font-size-16 mb-1">Product Image</h5>
+                    <h5 class="font-size-16 mb-1">Items Info</h5>
                     <p class="text-muted text-truncate mb-0">
                       Fill all information below
                     </p>
@@ -253,55 +243,112 @@ export default {
               data-parent="#addproduct-accordion"
             >
               <div class="p-4 border-top">
-                <DropZone
-                  files="files"
-                  cloudIcon="remix"
-                  dropzoneFile="galleryDropzoneFile"
-                  :isMultiple="true"
-                  @drop.prevent="galleryDrop"
-                  @change="gallerySelectedFile"
-                />
-                <ul class="list-unstyled mb-0" id="dropzone-preview2">
-                  <li class="mt-2" id="dropzone-preview-list2">
-                    <div
-                      class="border rounded mb-1"
-                      v-for="(file, index) of galleryFiles"
-                      :key="index"
-                    >
-                      <div class="d-flex p-2">
-                        <div class="flex-shrink-0 me-3">
-                          <div class="avatar-sm bg-light rounded">
-                            <img
-                              class="img-fluid rounded d-block"
-                              src="@/assets/images/new-document.png"
-                              alt="Dropzone-Image"
-                            />
+                <form>
+                  <div class="mb-3">
+                    <label class="control-label">Item</label>
+                    <select class="form-control select2">
+                      <option>Select Ordered Item</option>
+                      <option value="EL">Car A</option>
+                      <option value="FA">Car B</option>
+                      <option value="FI">Car C</option>
+                    </select>
+                  </div>
+                  <BRow>
+                    <BCol lg="4">
+                      <div class="mb-3">
+                        <label for="quantityItem">Quantity</label>
+                        <input
+                          id="quantityItem"
+                          name="quantityItem"
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter Quantity of Item."
+                        />
+                      </div>
+                    </BCol>
+                    <BCol lg="4">
+                      <div class="mb-3">
+                        <label for="price">Price</label>
+                        <input
+                          id="price"
+                          name="price"
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter Estiamted Price"
+                        />
+                      </div>
+                    </BCol>
+                  </BRow>
+                  <div class="mb-3">
+                    <label class="control-label">Supplier</label>
+                    <select class="form-control select2">
+                      <option>Select Supplier</option>
+                      <option value="EL">Supplier A</option>
+                      <option value="FA">Supplier B</option>
+                      <option value="FI">Supplier C</option>
+                    </select>
+                  </div>
+
+                  <label class="control-label">Picture</label>
+                  <DropZone
+                    files="files"
+                    cloudIcon="remix"
+                    dropzoneFile="galleryDropzoneFile"
+                    :isMultiple="true"
+                    @drop.prevent="galleryDrop"
+                    @change="gallerySelectedFile"
+                  />
+                  <ul class="list-unstyled mb-0" id="dropzone-preview2">
+                    <li class="mt-2" id="dropzone-preview-list2">
+                      <div
+                        class="border rounded mb-1"
+                        v-for="(file, index) of galleryFiles"
+                        :key="index"
+                      >
+                        <div class="d-flex p-2">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar-sm bg-light rounded">
+                              <img
+                                class="img-fluid rounded d-block"
+                                src="@/assets/images/new-document.png"
+                                alt="Dropzone-Image"
+                              />
+                            </div>
                           </div>
-                        </div>
-                        <div class="flex-grow-1">
-                          <div class="pt-1">
-                            <h5 class="fs-md mb-1">
-                              &nbsp;
-                              {{ file.name }}
-                            </h5>
-                            <p class="fs-sm text-muted mb-0">
-                              <strong>{{ file.size / 1024 }}</strong> KB
-                            </p>
-                            <strong class="error text-danger"></strong>
+                          <div class="flex-grow-1">
+                            <div class="pt-1">
+                              <h5 class="fs-md mb-1">
+                                &nbsp;
+                                {{ file.name }}
+                              </h5>
+                              <p class="fs-sm text-muted mb-0">
+                                <strong>{{ file.size / 1024 }}</strong> KB
+                              </p>
+                              <strong class="error text-danger"></strong>
+                            </div>
                           </div>
-                        </div>
-                        <div class="flex-shrink-0 ms-3">
-                          <BButton
-                            size="sm"
-                            variant="danger"
-                            @click="() => deleteRecord(file)"
-                            >Delete</BButton
-                          >
+                          <div class="flex-shrink-0 ms-3">
+                            <BButton
+                              size="sm"
+                              variant="danger"
+                              @click="() => deleteRecord(file)"
+                              >Delete</BButton
+                            >
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                </ul>
+                    </li>
+                  </ul>
+                  <div class="mb-3 mb-0">
+                    <label for="productdesc">Comments</label>
+                    <textarea
+                      class="form-control"
+                      id="productdesc"
+                      rows="4"
+                      placeholder="Enter your Product Description"
+                    ></textarea>
+                  </div>
+                </form>
               </div>
             </BCollapse>
           </BCard>

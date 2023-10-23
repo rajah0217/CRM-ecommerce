@@ -313,6 +313,7 @@ export default {
                 :class="{
                   'bg-soft-danger': data.item.status === 'Recieved',
                   'bg-soft-warning': data.item.status === 'In Production',
+                  'bg-soft-info': data.item.status === 'Shipped',
                 }"
               >
                 {{ data.item.status }}
