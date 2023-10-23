@@ -12,98 +12,122 @@ export default {
       title: "Orders",
       items: [
         {
-          text: "Ecommerce"
+          text: "CRM",
         },
         {
           text: "Orders",
-          active: true
-        }
+          active: true,
+        },
       ],
       orderData: [
         {
           id: "#MN0132",
           date: "10 Jul, 2020",
-          name: "Melvin Martin",
-          total: "$142",
-          status: "Paid"
+          cname: "Melvin Martin",
+          uname: "Martin Melvin",
+          number: "5",
+          total: "$3542",
+          status: "Shipped",
         },
         {
           id: "#MN0131",
           date: "09 Jul, 2020",
-          name: "Roy Michael",
-          total: "$130",
-          status: "Paid"
+          cname: "Michael Roy",
+          uname: "Roy Michael",
+          number: "6",
+          total: "$3530",
+          status: "Shipped",
         },
         {
           id: "#MN0130",
           date: "08 Jul, 2020",
-          name: "Shelby Wolf",
-          total: "$123",
-          status: "unpaid"
+          cname: "Wolf Shelby",
+          uname: "Shelby Wolf",
+          number: "2",
+          total: "$3523",
+          status: "In Production",
         },
         {
           id: "#MN0129",
           date: "07 Jul, 2020",
-          name: "James Riddick",
-          total: "$173",
-          status: "Paid"
+          cname: "Riddick James",
+          uname: "James Riddick",
+          number: "2",
+          total: "$3573",
+          status: "Shipped",
         },
         {
           id: "#MN0128",
           date: "07 Jul, 2020",
-          name: "George Kwan",
-          total: "$160",
-          status: "Chargeback"
+          cname: "Kwan George",
+          uname: "George Kwan",
+          number: "6",
+          total: "$3560",
+          status: "Recieved",
         },
         {
           id: "#MN0127",
           date: "06 Jul, 2020",
-          name: "Kevin Patterson",
-          total: "$165",
-          status: "Paid"
+          cname: "Patterson Kevin",
+          uname: "Kevin Patterson",
+          number: "4",
+          total: "$3565",
+          status: "Shipped",
         },
         {
           id: "#MN0126",
           date: "05 Jul, 2020",
-          name: "Danny Orr",
-          total: "$161",
-          status: "Paid"
+          cname: "Orr Danny",
+          uname: "Danny Orr",
+          number: "6",
+          total: "$3561",
+          status: "Shipped",
         },
         {
           id: "#MN0125",
           date: "04 Jul, 2020",
-          name: "Sylvia Garcia",
-          total: "$153",
-          status: "unpaid"
+          cname: "Garcia Sylvia",
+          uname: "Sylvia Garcia",
+          number: "4",
+          total: "$3553",
+          status: "In Production",
         },
         {
           id: "#MN0124",
           date: "04 Jul, 2020",
-          name: "Charles Denney",
-          total: "$152",
-          status: "Paid"
+          cname: "Denney Charles",
+          uname: "Charles Denney",
+          number: "7",
+          total: "$3552",
+          status: "Shipped",
         },
         {
           id: "#MN0123",
           date: "03 Jul, 2020",
-          name: "Lisa Farrell",
-          total: "$167",
-          status: "Paid"
+          cname: "Farrell Lisa",
+          uname: "Lisa Farrell",
+          number: "5",
+          total: "$3567",
+          status: "Shipped",
         },
         {
           id: "#MN0122",
           date: "02 Jul, 2020",
-          name: "Connie Franco",
-          total: "$163",
-          status: "Paid"
+          cname: "Franco Connie",
+          uname: "Connie Franco",
+          number: "3",
+          total: "$3563",
+          status: "In Production",
         },
         {
           id: "#MN0121",
           date: "02 Jul, 2020",
-          name: "Lara Casillas",
-          total: "$171",
-          status: "Paid"
-        }
+          cname: "Lara Casillas",
+          uname: "Casillas Lara",
+          number: "5",
+          total: "$3571",
+          status: "Delivered",
+        },
       ],
       totalRows: 1,
       currentPage: 1,
@@ -116,32 +140,41 @@ export default {
       fields: [
         {
           key: "check",
-          label: ""
+          label: "",
         },
         {
           key: "id",
-          label: "Order ID"
+          label: "Order ID",
         },
         {
           key: "date",
-          sortable: true
+          sortable: true,
         },
         {
-          key: "name",
-          label: "Billing Name",
-          sortable: true
+          key: "cname",
+          label: "Client Name",
+          sortable: true,
+        },
+        {
+          key: "uname",
+          label: "User Name",
+          sortable: true,
+        },
+        {
+          key: "number",
+          label: "Supplier Number",
+          sortable: true,
         },
         {
           key: "total",
-          sortable: true
+          sortable: true,
         },
         {
           key: "status",
-          label: "Payment Status",
-          sortable: true
+          label: "Order Status",
         },
-        "action"
-      ]
+        "action",
+      ],
     };
   },
   middleware: "authentication",
@@ -151,7 +184,7 @@ export default {
      */
     rows() {
       return this.orderData.length;
-    }
+    },
   },
   mounted() {
     // Set the initial number of items
@@ -165,8 +198,8 @@ export default {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -181,8 +214,10 @@ export default {
               <label class="my-1 me-2" for="order-selectinput">Orders</label>
               <select class="form-select" id="order-selectinput">
                 <option selected="">All</option>
-                <option value="1">Active</option>
-                <option value="2">Unpaid</option>
+                <option value="1">Recieved</option>
+                <option value="2">In Production</option>
+                <option value="3">Shipped</option>
+                <option value="4">Delivered</option>
               </select>
             </form>
           </div>
@@ -260,15 +295,24 @@ export default {
               }}</a>
             </template>
 
-            <template v-slot:cell(name)="data">
-              <a href="#" class="text-body">{{ data.item.name }}</a>
+            <template v-slot:cell(cname)="data">
+              <a href="#" class="text-body">{{ data.item.cname }}</a>
             </template>
+
+            <template v-slot:cell(uname)="data">
+              <a href="#" class="text-body">{{ data.item.uname }}</a>
+            </template>
+
+            <template v-slot:cell(number)="data">
+              <a href="#" class="text-body">{{ data.item.number }}</a>
+            </template>
+
             <template v-slot:cell(status)="data">
               <div
                 class="badge bg-pill bg-soft-success font-size-12"
                 :class="{
-                  'bg-soft-danger': data.item.status === 'Chargeback',
-                  'bg-soft-warning': data.item.status === 'unpaid'
+                  'bg-soft-danger': data.item.status === 'Recieved',
+                  'bg-soft-warning': data.item.status === 'In Production',
                 }"
               >
                 {{ data.item.status }}
